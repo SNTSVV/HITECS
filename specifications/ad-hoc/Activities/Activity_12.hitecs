@@ -1,0 +1,33 @@
+namespace Activities;
+private import Component::*;
+
+activity Activity_12(in Comp9:Component_9,in Comp2:Component_2,in Comp8:Component_8,in Comp11_2:Component_11,in Comp3:Component_3,in Comp1:Component_1,in ctx:Context){
+
+      Comp8.setoperation_27(30);
+
+
+      Comp8.operation_9(3);
+
+
+      Comp8.operation_11(100);
+
+
+      Comp8.operation_13(ctx.operation_2());
+
+
+      Comp8.operation_18(Component_8.enum1.ON);
+
+
+      Comp11_1.operation_25(Component_11.enum1.OFF);
+
+
+      Comp3.operation_1(Component_3.enum1.LOAD);
+
+
+      Comp1.att1(ctx.operation_5());
+
+
+      Comp1.att1(Comp9.operation_2());
+
+
+        }

@@ -1,0 +1,13 @@
+namespace PhysicalBehavior;
+
+physicalbehavior PhysicalBehavior_4(in arg1 : Real, in arg2 : Real, in arg3 : Real) : Real {
+
+att1 : Uniform(const1,const2) = Unknown;
+att2 : Uniform(const3,const4) = Unknown;
+att3 : Uniform(const5,const6) = Unknown;
+
+
+att4 : Real = const7 + arg1 + const8 - arg2 + arg3 - att1 + att2 + att3;
+
+return att4;
+}

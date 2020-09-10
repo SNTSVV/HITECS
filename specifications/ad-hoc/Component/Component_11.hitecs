@@ -1,0 +1,91 @@
+namespace Component;
+    component Component_11{
+
+public enum enum1 {
+  ON,
+  OFF
+}
+
+private att1:Real;  // unit: GHz
+private att2:Real; // unit: dBm
+private att3:enum1;
+private att4:Real;
+private att5:Real;
+private att6:enum1;
+
+public activity getInstance(in att5:Integer):Component_11[0..1]{
+    Comp11_1=Component_11.allInstances();
+    Comp11_2=Component_11.allInstances();
+    if(att5==1){
+
+    if(Comp11_1->isEmpty()){
+    Comp11_1=new Component_11();
+    }
+    return Comp11_1->first();
+    }
+    if(att5==2){
+    if(Comp11_2->isEmpty()){
+    Comp11_2=new Component_11();
+    }
+    return Comp11_2->first();
+
+
+    }
+    return null;
+    }
+
+@Initialize
+public reset(){
+    att1=1;
+    att2=-80;
+    att3=enum1.OFF;
+    }
+
+@Initialize
+public preset(){
+    att1=1;
+    att2=-80;
+    att3=enum1.OFF;
+    }
+@Initialize
+public operation_3(in att1:Real){
+    this.att1=att1;
+    }
+@Initialize
+public operation_3(in lv:Real){
+    this.att2=lv;
+    }
+
+@Act
+public operation_3():Real{
+    return this.att1;
+    }
+
+@Act
+public operation_1(in att1:Real){
+    this.att1=att1;
+    }
+
+@Act
+public operation_4():Real{
+    return this.att2;
+    }
+@Act
+public operation_25(in mode:enum1){
+    this.att3=mode;
+    }
+@Act
+public operation_6():enum1{
+    return this.att3;
+    }
+
+
+@Cleanup
+public operation_3(in lv:Real){
+    this.att2=lv;
+    }
+@Cleanup
+public operation_25(in mode:enum1){
+    this.att3=mode;
+    }
+    }

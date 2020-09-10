@@ -1,0 +1,10 @@
+namespace PhysicalBehavior;
+
+physicalbehavior PhysicalBehavior_1(in arg1 : Real) : Real {
+
+att1 : Real = const1 * arg1;
+att2 : Real = const2 * pow(arg1,2);
+att3 : Real = att1/(1+att2);
+
+return att3;
+}

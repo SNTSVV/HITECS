@@ -1,0 +1,680 @@
+grammar org.xtext.Hitecs hidden (WS)
+
+generate hitecs "http://www.xtext.org/Hitecs"
+import 'http://www.eclipse.org/xtext/xbase/Xbase' as xbase
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+/**************
+ * UNITS
+ **************/
+HitecsProgram:
+	components+=ComponentBlock*
+	schedulers+=SchedulerBlock*
+	testcases+=TestCaseBlock*
+	classes+=ClassBlock*
+	packages+=Package*
+	activities+=ActivityBlock*
+	measurementformula+=MeasurementFormulaBlock*
+	physicalbehavior+=PhysicalBehaviorBlock*
+	annotations+=AnnotationSemantics*
+;
+	
+
+ClassBlock:
+	(namespace=NameSpace)?
+	imports+=Import*
+	access=AccessLevel? 'class' name=ID ('specializes' superclass=ID)? block=Block;
+
+TestCaseBlock:
+	(namespace=NameSpace)?
+	imports+=Import*
+	access=AccessLevel? 'testcase' name=ID ('specializes' superclass=ID)? block=Block;
+
+SchedulerBlock:
+	(namespace=NameSpace)?
+	imports+=Import*
+	access=AccessLevel? 'scheduler' name=ID ('specializes' superclass=ID)? block=Block ('do' anotherblock=Block)?;
+
+ComponentBlock:
+	(namespace=NameSpace)?
+	imports+=Import*
+	access=AccessLevel? 'component' name=ID ('specializes' superclass=ID)? block=Block;
+
+NameSpace:
+	'namespace' name=QualifiedName ';';
+
+ActivityBlock:
+	(namespace=NameSpace)?
+	imports+=Import*
+	ACTIVITY='activity' name=ID
+	'(' (params+=Parameter (',' params+=Parameter)*)? ')'
+	block=actBlock;
+	
+MeasurementFormulaBlock:
+	(namespace=NameSpace)?
+	imports+=Import*
+	ACTIVITY='measurementformula' name=ID
+	'(' (params+=Parameter (',' params+=Parameter)*)? ')'
+	block=actBlock;
+	
+PhysicalBehaviorBlock:
+	(namespace=NameSpace)?
+	imports+=Import*
+	ACTIVITY='physicalbehavior' name=ID
+	'(' (params+=Parameter (',' params+=Parameter)*)? ')'
+	block=actBlock;
+	
+AnnotationSemantics :
+	(namespace=NameSpace)?
+	imports+=Import*
+	access=AccessLevel? 'annotation' name=ID block=Block
+;
+
+Package:
+	'package' name=ID block=Block;
+
+Import:
+	(ImportVisibilityIndicator)? 'import' importedNamespace=QualifiedNameWithWildcard ';';
+
+ImportVisibilityIndicator:
+	'public' | 'private';
+
+QualifiedNameWithWildcard:
+	QualifiedName '.*'? '::*'?;
+
+QualifiedName:
+	ID (('.' ID))*;
+
+
+BlockType:
+	access=AccessLevel? blocktype=BlockTypeIndicator name=ID ('specializes' superclass=ID)? block=Block ('do'
+	anotherblock=Block)?;
+
+	/**************
+ * ACCESS
+ **************/
+enum BlockTypeIndicator:
+	COMPONENT='component' | SCHEDULER='scheduler' | TESTCASE='testcase' | CLASS='class';
+
+enum AccessLevel:
+	 NULL ='null' | PRIVATE='private' | PUBLIC='public' | PROTECTED='protected' | ABSTRACT='abstract' | ACTIVE='active' ;
+
+	/**************
+ * LITERALS
+ **************/
+LITERAL:
+	BOOLEAN_LITERAL |
+	NUMBER_LITERAL |
+	STRING_LITERAL;
+
+BOOLEAN_LITERAL:
+	value=BooleanValue; // (suffix = SuffixExpression) ? ;
+enum BooleanValue:
+	TRUE='true' |
+	FALSE='false';
+
+NUMBER_LITERAL:
+	INTEGER_LITERAL | UNLIMITED_LITERAL;
+
+INTEGER_LITERAL:
+	value=INT;
+
+UNLIMITED_LITERAL:
+	value='*';
+
+STRING_LITERAL:
+	value=STRING;
+
+NameExpression:
+	(((prefixOp=('++' | '--') (path=QualifiedNamePath)? id=ID))
+	|
+	((path=QualifiedNamePath)? id=ID
+	(invocationCompletion=Tuple
+	| sequenceConstructionCompletion=SequenceConstructionOrAccessCompletion
+	| postfixOp=('++' | '--'))?)) (suffix=SuffixExpression)?;
+
+QualifiedNamePath:
+	(namespace+=UnqualifiedName '::')+;
+
+UnqualifiedName:
+	name=ID (templateBinding=TemplateBinding)?;
+
+TemplateBinding:
+	'<' bindings+=NamedTemplateBinding (',' bindings+=NamedTemplateBinding)* '>';
+
+NamedTemplateBinding:
+	formal=ID '=>' actual=QualifiedNameWithBinding;
+
+QualifiedNameWithBinding:
+	id=ID (binding=TemplateBinding)? ('::' remaining=QualifiedNameWithBinding)?;
+
+Tuple:
+	{Tuple} '(' (tupleElements+=TupleElement (',' tupleElements+=TupleElement)*)? ')';
+
+TupleElement:
+	argument=Expression;
+
+	/****************************************
+ * Expressions / ConditionalTestExpression
+ ****************************************/
+Expression:
+	ConditionalTestExpression;
+
+ConditionalTestExpression:
+	exp=ConditionalOrExpression ('?' whenTrue=ConditionalTestExpression ':' whenFalse=ConditionalTestExpression)?;
+
+ConditionalOrExpression:
+	exp+=ConditionalAndExpression ('||' exp+=ConditionalAndExpression)*;
+
+ConditionalAndExpression:
+	exp+=InclusiveOrExpression ('&&' exp+=InclusiveOrExpression)*;
+
+InclusiveOrExpression:
+	exp+=ExclusiveOrExpression ('|' exp+=ExclusiveOrExpression)*;
+
+ExclusiveOrExpression:
+	exp+=AndExpression ('^' exp+=AndExpression)*;
+
+AndExpression:
+	exp+=EqualityExpression ('&' exp+=EqualityExpression)*;
+
+EqualityExpression:
+	exp+=ClassificationExpression (op+=('==' | '!=') exp+=ClassificationExpression)*;
+
+enum EqualityOperator:
+	EQUALS='==' |
+	NOT_EQUALS='!=';
+
+ClassificationExpression:
+	exp=RelationalExpression (op=('instanceof' | 'hastype') typeName=NameExpression)?;
+
+enum ClassificationOperator:
+	INSTANCEOF='instanceof' |
+	HASTYPE='hastype';
+
+RelationalExpression:
+	left=ShiftExpression (op=('<' | '>' | '<=' | '>=') right=ShiftExpression)?;
+
+UnknownExpression :
+	 UNKNOWN = 'unknown' (range = '[' rangeMin = (INT) '..' rangeMax = (INT) ']')?
+;
+
+
+
+
+
+ShiftExpression:
+	exp+=AdditiveExpression (op=('<<' | '>>' | '>>>') exp+=AdditiveExpression)?;
+
+enum ShiftOperator:
+	LSHIFT='<<' |
+	RSHIFT='>>' |
+	URSHIFT='>>>';
+
+AdditiveExpression:
+	exp+=MultiplicativeExpression (op+=('+' | '-') exp+=MultiplicativeExpression)*;
+
+
+
+MultiplicativeExpression:
+	exp+=UnaryExpression (op+=('*' | '/' | '%') exp+=UnaryExpression)*;
+
+
+UnaryExpression:
+	(op=('!' | '-' | '+' | '$' | '~'))?
+	exp=PrimaryExpression;
+
+PrimaryExpression:
+	prefix=ValueSpecification;
+
+SuffixExpression:
+	OperationCallExpression |
+	PropertyCallExpression |
+	SequenceOperationExpression |
+	SequenceReductionExpression |
+	SequenceExpansionExpression |
+	ClassExtentExpression;
+
+OperationCallExpression:
+	'.' operationName=ID tuple=Tuple (suffix=SuffixExpression)?;
+
+PropertyCallExpression:
+	'.' propertyName=ID ('[' index=Expression ']')? (suffix=SuffixExpression)?;
+
+
+LinkOperationTuple:
+	'(' linkOperationTupleElement+=LinkOperationTupleElement (',' linkOperationTupleElement+=LinkOperationTupleElement)*
+	')';
+
+LinkOperationTupleElement:
+	role=ID ('[' roleIndex=Expression ']')? '=>' object=Expression;
+
+
+SequenceOperationExpression:
+//'->' operationName = ID tuple = Tuple (suffix = SuffixExpression) ?
+	'->' operationName=QualifiedNameWithBinding tuple=Tuple (suffix=SuffixExpression)?;
+
+SequenceReductionExpression:
+	'->' 'reduce' (isOrdered?='ordered')? behavior=QualifiedNameWithBinding (suffix=SuffixExpression)?;
+
+SequenceExpansionExpression:
+	SelectOrRejectOperation | CollectOrIterateOperation | ForAllOrExistsOrOneOperation | IsUniqueOperation;
+
+SelectOrRejectOperation:
+	'->' op=SelectOrRejectOperator name=ID '(' expr=Expression ')' (suffix=SuffixExpression)?;
+
+enum SelectOrRejectOperator:
+	SELECT='select' |
+	REJECT='reject';
+
+CollectOrIterateOperation:
+	'->' op=CollectOrIterateOperator name=ID '(' expr=Expression ')' (suffix=SuffixExpression)?;
+
+enum CollectOrIterateOperator:
+	COLLECT='collect' |
+	ITERATE='iterate';
+
+ForAllOrExistsOrOneOperation:
+	'->' op=ForAllOrExistsOrOneOperator name=ID '(' expr=Expression ')' (suffix=SuffixExpression)?;
+
+enum ForAllOrExistsOrOneOperator:
+	FORALL='forAll' |
+	EXISTS='exists' |
+	ONE='one';
+
+IsUniqueOperation:
+	'->' 'isUnique' name=ID '(' expr=Expression ')' (suffix=SuffixExpression)?;
+
+ValueSpecification:
+	NameExpression | LITERAL | ThisExpression | SuperInvocationExpression | InstanceCreationExpression |
+	ParenthesizedExpression | NullExpression;
+
+NonLiteralValueSpecification:
+	NameExpression | ParenthesizedExpression | InstanceCreationExpression | ThisExpression | SuperInvocationExpression;
+
+ParenthesizedExpression:
+	'(' expOrTypeCast=Expression ')' ((casted=NonLiteralValueSpecification) | (suffix=SuffixExpression))?;
+
+NullExpression:
+	{NullExpression} 'null';
+
+ThisExpression:
+	{ThisExpression} 'this' (suffix=SuffixExpression)?;
+
+SuperInvocationExpression:
+	'super' ((tuple=Tuple) | ('.' operationName=QualifiedNameWithBinding tuple=Tuple));
+
+InstanceCreationExpression:
+	'new' constructor=QualifiedNameWithBinding tuple=InstanceCreationTuple (suffix=SuffixExpression)?;
+
+InstanceCreationTuple:
+	{InstanceCreationTuple} '(' (ID (',' ID)*)? ')';
+
+InstanceCreationTupleElement:
+	role=ID '=>' object=Expression;
+
+SequenceConstructionOrAccessCompletion:
+	(multiplicityIndicator?='[' ((accessCompletion=AccessCompletion) |
+	sequenceCompletion=PartialSequenceConstructionCompletion)) | (expression=SequenceConstructionExpression);
+
+AccessCompletion:
+	accessIndex=Expression ']';
+
+PartialSequenceConstructionCompletion:
+	']' expression=SequenceConstructionExpression;
+
+SequenceConstructionExpression:
+	'{' sequenceElement+=SequenceElement ((',' sequenceElement+=SequenceElement)* | ('..' rangeUpper=Expression)) '}';
+
+SequenceElement:
+	Expression | SequenceConstructionExpression;
+
+ClassExtentExpression:
+	{ClassExtentExpression} '.' 'allInstances' '(' ')';
+
+	/*****************
+ * Statements
+ ****************/
+Statement:
+	(InlineStatement | BlockStatement | SpecialMethodDeclaration |
+	PackageDeclaration | EmptyStatement | FieldDeclaration | MethodDeclaration | EnumDeclaration | ConditionalIfStatement |
+	SwitchStatement | WhileStatement | DoStatement | ForStatement | BreakStatement | ReturnStatement | AcceptStatement |
+	ClassifyStatement | AssignementorInvocationStatement | SuperInvocationStatement | ThisInvocation
+	|AssertionStatement | AnnotatedStatement | CommentStatement | forDeclarationStatement);
+
+StereotypeAnnotation:
+	'@' stereotypeName=QualifiedName;
+	
+
+
+AnnotatedStatement :
+	'//@' (annotation = ExtendedQualifiedName)'(' (record=ExtendedQualifiedName ',' type=ExtendedQualifiedName)')'
+;
+actBlock:
+	
+	{actBlock} '{'  (Statement+=ActStatement)* (block=Block)? '}';
+
+ActStatement:
+	InvocationStatement | AssertionStatement | AnnotatedStatement | CommentStatement | DistributionStatement
+;
+
+UnknownStatement :
+	variable = ExtendedQualifiedName ':' value =  AssignementExpression
+;
+
+DistributionStatement :
+	name = ExtendedQualifiedName ':' (value = DistributionType) '=' 'unknown' ';'
+;
+
+DistributionType :
+	UD = 'uniformDistribution' '(' min = INT ',' max = INT')' | TD = 'triangularDistribution' '(' min = INT ',' max = INT ',' mode = INT')' | PD = 'poissonDistribution' '('mode = INT')'
+;
+
+InvocationStatement :
+	name = ExtendedQualifiedName '('(value = ExtendedQualifiedName)? ('('(operation = ExtendedQualifiedName)?')')? ')'';'
+	
+;
+AssertionStatement:
+	 {AssertionStatement} 'assert''(' Condition = AssertionExpression (op =('&&'|'||') AnotherCondition = AssertionExpression)? ')'';'
+	
+;
+AssertionExpression :
+	left = ExtendedQualifiedName('('(operation = ExtendedQualifiedName)?')')? (op = ('==' | '!=' | '>=' | '<='))  right = ExtendedQualifiedName
+;
+ExtendedQualifiedName :
+('.')?ID(('.' ID))*| ('-')?INT('.'INT)? | STRING
+;
+
+Block:
+	'{' {Block} (sequence=StatementSequence)? '}';
+
+
+forDeclarationStatement :
+	(name=ExtendedQualifiedName)'['(index=ID)?']'(op=ExtendedQualifiedName)'('')' ';'
+;
+AssignementorInvocationStatement :
+	 (left = (AssignementExpression)(prefixOp=('++' | '--'))?('('(params+=ExtendedQualifiedName (',' params+=ExtendedQualifiedName)*)* ')')?) (op =('='))? (right = AssignementOperation)? ';'
+;
+
+AssignementOperation :
+	AssignementValue | InstanceCreationStatement | AssignementValueWithParantheses
+;
+
+AssignementValue :
+	firstValue = AssignementExpression (arithOp = ('+'|'-'|'*'))? (secondValue = AssignementExpression)?
+;
+AssignementExpression :
+	EQN = ExtendedQualifiedName | UE = UnknownExpression 
+;
+AssignementValueWithParantheses :
+		value = ExtendedQualifiedName  '('(params+=ExtendedQualifiedName (',' params+=ExtendedQualifiedName)*)* ')'
+;
+InstanceCreationStatement :
+ 'new' (constructor = ExtendedQualifiedName)'('(params+=ExtendedQualifiedName (',' params+=ExtendedQualifiedName)*)* ')'
+;
+
+StatementSequence:
+	(statements+=DocumentedStatement)+
+;
+	
+
+
+DocumentedStatement:
+	 statement=Statement;
+
+CommentStatement :
+	ML = ML_COMMENT | SL = SL_COMMENT
+;
+
+InlineStatement:
+	'/*@' 'inline' '(' langageName=ID ')' body=STRING '*/';
+
+
+Annotation:
+	kind=AnnotationKind ('(' args+=ID (',' args+=ID)* ')')?;
+
+enum AnnotationKind:
+	ISOLATED='isolated' |
+	DETERMINED='determined' |
+	ASSURED='assured' |
+	PARALLEL='parallel';
+
+BlockStatement:
+	block=Block;
+
+
+
+EmptyStatement:
+	{EmptyStatement} ';';
+
+	//Package Declaration
+PackageDeclaration:
+	access=AccessLevel (newaccess=AccessLevel)? blocktype=BlockTypeIndicator name=ID ('specializes' superclass=ID)? ';';
+
+	// Field and Methods declaration
+
+Assignement:
+	ID | INT | 'null' |'""';
+
+FieldDeclaration:
+	(access=AccessLevel)? (Static='static')? (name=ID)? '['? (array=ID)? (']')? (UNKOWN = UnknownExpression)? ':' type=QualifiedName ('[' Cardinality '..' Cardinality ']')? ((op ='=') ('{'params+=ID (',' params+=ID)*'}' )? (assignement = Assignement)?)? ';';
+
+
+
+Cardinality:
+	INT | '*';
+
+MethodDeclaration:
+	(stereotype = StereotypeAnnotation)?
+	access=AccessLevel? (Methodacess=MethodAcess)? name=ID '(' (params+=Parameter (',' params+=Parameter)*)? ')' (':')? (methodtype=MethodType)? block=Block;
+	
+MethodType :
+	QualifiedName('[' Cardinality '..' Cardinality ']')?
+;
+MethodAcess:
+	ACTIVITY='activity' | STATIC ='static'
+;
+
+
+SpecialMethodDeclaration:
+	access=AccessLevel? name=ID '(' params+=Parameter ',' params+=Parameter ')' (';');
+
+EnumDeclaration:
+	access=AccessLevel? 'enum' name=ID num=Enum;
+
+Enum:
+	'{' QualifiedName (',' QualifiedName)* '}';
+
+ParameterDirection:
+	'in' | 'out' | 'inout';
+
+Parameter:
+	ParameterDirection name=ID ':' Paramtype=ParamType;
+
+ParamType:
+	name=ID
+;
+
+ConditionalIfStatement :
+	'if' '(' condition=contionalExpression ')' block=Block 
+	(conditionalElseIfStatement+=ConditionalElseIfStatement)* (ConditionalElseStatement=ConditionalElseStatement)?
+;
+
+ConditionalElseIfStatement :
+	
+	'else' 'if' '(' condition=contionalExpression ')' block=Block
+;
+
+ConditionalElseStatement:
+		'else' block=Block
+;
+
+contionalExpression:
+	left = (ExtendedQualifiedName) op=Operation right=(ExtendedQualifiedName|'null')
+;
+
+Operation :
+	'=='|'!='|'>=' |'<=' | '>' | '<'
+;
+
+IfStatement:
+	'if' sequentialClausses=SequentialClauses (finalClause=FinalClause)?;
+
+SequentialClauses:
+	conccurentClauses+=ConcurrentClauses ('else' 'if' conccurentClauses+=ConcurrentClauses)*;
+
+ConcurrentClauses:
+	nonFinalClause+=NonFinalClause ('or' 'if' nonFinalClause+=NonFinalClause)*;
+
+NonFinalClause:
+	'(' condition=Expression ')' block=Block;
+
+FinalClause:
+	'else' block=Block;
+
+SwitchStatement:
+	'switch' '(' expression=Expression ')' '{' (switchClause+=SwitchClause)* (defaultClause=SwitchDefaultClause)? '}';
+
+SwitchClause:
+	switchCase+=SwitchCase (switchCase+=SwitchCase)* statementSequence=NonEmptyStatementSequence;
+
+SwitchCase:
+	'case' expression=Expression ':';
+
+SwitchDefaultClause:
+	'default' ':' statementSequence=NonEmptyStatementSequence;
+
+NonEmptyStatementSequence:
+	(statement+=DocumentedStatement)+;
+
+/* WHILE STATEMENTS */
+WhileStatement:
+	'while' '(' condition=Expression ')' block=Block;
+
+/* DO STATEMENTS */
+DoStatement:
+	'do' block=Block 'while' '(' condition=Expression ')' ';';
+
+DoBlock:
+	'do' block=Block;
+
+/* FOR STATEMENTS */
+ForStatement:
+	'for' '(' control=ForControl ')' block=Block;
+
+ForControl:
+	loopVariableDefinition=LoopVariableDefinition;
+
+LoopVariableDefinition:
+	(name=ID 'in' expression1=ExtendedQualifiedName ('..' expression2=ExtendedQualifiedName)?) | (type=ExtendedQualifiedName name=ID ':'
+	expression=ExtendedQualifiedName);
+
+/* BREAK STATEMENTS */
+BreakStatement:
+	{BreakStatement} 'break' ';';
+
+/* RETURN STATEMENTS */
+ReturnStatement:
+    'return' expression=ReturnExpression';';
+
+ReturnExpression :
+	ThisStatement | VALUE = ExtendedQualifiedName | NULL = 'null' | UnknownExpression
+;
+
+
+
+ThisInvocation :
+	'this'expression=ExtendedQualifiedName(op = '=')(value=ExtendedQualifiedName)';'
+;
+/* ACCEPT STATEMENTS */
+AcceptStatement:
+	clause=AcceptClause (simpleAccept=SimpleAcceptStatementCompletion | compoundAccept=CompoundAcceptStatementCompletion);
+
+SimpleAcceptStatementCompletion:
+	{SimpleAcceptStatementCompletion} ';';
+
+CompoundAcceptStatementCompletion:
+	block=Block ('or' acceptBlock+=AcceptBlock)*;
+
+AcceptBlock:
+	clause=AcceptClause block=Block;
+
+AcceptClause:
+	'accept' '(' (name=ID ':')? qualifiedNameList=QualifiedNameList ')';
+
+/* CLASSIFY STATEMENTS */
+ClassifyStatement:
+	'classify' expression=Expression clause=ClassificationClause ';';
+
+ClassificationClause:
+	classifyFromClause=ClassificationFromClause (classifyToClause=ClassificationToClause)? |
+	(reclassyAllClause=ReclassifyAllClause)? classifyToClause=ClassificationToClause;
+
+ClassificationFromClause:
+	'from' qualifiedNameList=QualifiedNameList;
+
+ClassificationToClause:
+	'to' qualifiedNameList=QualifiedNameList;
+
+ReclassifyAllClause:
+	{ReclassifyAllClause} 'from' '*';
+
+QualifiedNameList:
+	qualifiedName+=QualifiedNameWithBinding (',' qualifiedName+=QualifiedNameWithBinding)*;
+
+InvocationOrAssignementOrDeclarationStatement:
+	typePart_OR_assignedPart_OR_invocationPart=NameExpression
+	//(suffixCompletion = SuffixCompletion)?
+	((variableDeclarationCompletion=VariableDeclarationCompletion) | (assignmentCompletion=AssignmentCompletion))? ';';
+
+SuperInvocationStatement:
+	_super=SuperInvocationExpression ';' //(suffix = SuffixCompletion)? ';'
+;
+ThisStatement :
+	'this'('.')? (returnExpression = AssignementExpression)
+;
+
+
+ThisInvocationStatement:
+	_this=ThisExpression (assignmentCompletion=AssignmentCompletion)? ';';
+
+InstanceCreationInvocationStatement:
+	_new=InstanceCreationExpression ';' //(suffix = SuffixCompletion)? ';'
+;
+
+VariableDeclarationCompletion:
+	(multiplicityIndicator?='[' ']')? variableName=ID initValue=AssignmentCompletion;
+
+AssignmentCompletion:
+	op=AssignmentOperator rightHandSide=SequenceElement;
+
+/* Operators */
+enum AssignmentOperator:
+	ASSIGN='=' |
+	PLUSASSIGN='+=' |
+	MINUSASSIGN='-=' |
+	MULTASSIGN='*=' |
+	MODASSIGN='%=' |
+	DIVASSIGN='/=' |
+	ANDASSIGN='&=' |
+	ORASSIGN='|=' |
+	XORASSIGN='^=' |
+	LSHIFTASSIGN='<<=' |
+	RSHIFTASSIGN='>>=' |
+	URSHIFTASSIGN='>>>=';
+	
+
+
+terminal ID: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
+terminal INT returns ecore::EInt: ('0'..'9')+;
+terminal STRING:
+			'"' ( '\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\'|'"') )* '"' |
+			"'" ( '\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\'|"'") )* "'"
+		;
+terminal ML_COMMENT : '/*' -> '*/';
+terminal SL_COMMENT : '//' !('\n'|'\r')* ('\r'? '\n')?;
+
+terminal WS         : (' '|'\t'|'\r'|'\n')+;
+
+terminal ANY_OTHER: .;
+

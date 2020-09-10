@@ -1,0 +1,33 @@
+namespace Component;
+    component Component_10{
+
+
+public enum enum1 {
+  LINEAR,
+  LIMITER
+}
+
+private att1:enum1;
+
+private Comp9Position:Integer;
+
+public activity getInstance():Component_10[0..1]{
+    instance=Component_10.allInstances();
+    if(instance->isEmpty()){
+    instance=new Component_10();
+    }
+    return instance->first();
+    }
+@Act
+public operation_1(in att2:Integer){
+    this.Comp9Position=att2;
+    }
+@Act
+public operation_2(in mode:enum1){
+    this.att1=mode;
+
+@Cleanup
+public operation_2(in mode:enum1){
+    this.att1=mode;
+    }
+    }

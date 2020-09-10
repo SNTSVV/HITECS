@@ -1,0 +1,8 @@
+namespace Activities;
+private import Component::*;
+
+activity Activity_16(in Comp9:Component_9,in Comp2:Component_2,in Comp11_1:Component_11){
+
+        Comp11_1.operation_1(Component_11.enum1.OFF);
+
+        }

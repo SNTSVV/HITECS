@@ -1,0 +1,32 @@
+namespace Component;
+    component Component_13{
+
+public enum enum1 {
+  LOAD,
+  V,
+  H
+}
+private att1:enum1;
+
+public activity getInstance():Component_13[0..1]{
+    instance=Component_13.allInstances();
+    if(instance->isEmpty()){
+    instance=new Component_13();
+    }
+    return instance->first();
+    }
+
+@Initialize
+public operation_1(in att1:enum1){
+    this.att1=att1;
+    }
+
+@Act
+public operation_1(in att1:enum1){
+    this.att1=att1;
+    }
+@Cleanup
+public operation_1(in att1:enum1){
+    this.att1=att1;
+    }
+    }

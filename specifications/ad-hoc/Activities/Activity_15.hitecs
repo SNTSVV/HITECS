@@ -1,0 +1,124 @@
+namespace Activities;
+private import Component::*;
+
+activity Activity_15(in Comp9:Component_9,in Comp2:Component_2,in Comp1:Component_1,in Comp13:Component_13,in Comp7:Component_7,in Comp12:Component_12,in Comp4:Component_4,in Comp5_1:Component_5,in fml:Formula,in util:Util){
+
+      Comp1.operation_2((Comp2.operation_2());
+      assert(Comp1.operation_7() == model.iot.component.Component_2.enum2(Comp2.operation_2()));
+
+      Comp1.operation_3((Comp2.operation_3());
+      assert(Comp1.Rxenum2() == model.iot.component.Component_2.enum2(Comp2.operation_3()));
+
+      Comp1.att1(Comp9.operation_2());
+      assert(Comp1.att1 == Comp9.operation_2());
+
+      Comp13.operation_1(Component_13.enum1.LOAD);
+      assert(Comp13.att1 == Component_13.enum1.LOAD);
+
+      Comp7.operation_1(Component_7.enum1.LOAD);
+      assert(Comp7.att1 == Component_7.enum1.LOAD);
+
+      Comp3.operation_1(Component_3.enum1.LOAD);
+      assert(Comp3.att1 == Component_3.enum1.LOAD);
+
+      txComp6.operation_2(Util.operation_1(Comp2.operation_4()));
+      assert(txComp6.att1 == Util.operation_2(Comp2.operation_4()));
+
+      rxComp6.operation_2(Util.operation_1(Comp2.operation_5()));
+      assert(rxComp6.att1 == Util.operation_2(Comp2.operation_5()));
+
+      Comp4.reset();
+      assert(Comp4.att1 == 1);
+      assert(Comp4.att2  == -80);
+      assert(Comp4.att3 == model.iot.component.Component_4.enum1.OFF);
+
+      Comp11_2.reset();
+      assert(Comp11_2.att3 == enum1.OFF);
+      assert(Comp11_2.att1 == 1);
+      assert(Comp11_2.att3 == Component_11.enum1.OFF);
+
+      Comp8.reset();
+      assert(Comp8.att1 == 0);
+      assert(Comp8.att2 == 0);
+      assert(Comp8.att3 == 0);
+      assert(Comp8.att4 == 0);
+      assert(Comp8.att5 == 0);
+      assert(Comp8.att6 == 0);
+      assert(Comp8.att1CntMode == model.iot.component.Component_8.enum1.OFF);
+      assert(Comp8.att1CntRes == 0);
+
+      Comp5_1.reset();
+      assert(Comp5_1.att1 == 0);
+
+      Comp5_2.reset();
+      assert(Comp5_2.att1 == 0);
+
+      txComp6.reset();
+      assert(txComp6.state == enum3.RESET);
+
+      rxComp6.reset();
+      assert(rxComp6.state == enum3.RESET);
+
+      txComp6.operation_1();
+      assert(txComp6.state == enum3.ZERO);
+
+      rxComp6.operation_1();
+      assert(rxComp6.state == enum3.ZERO);
+
+      Comp4.preset();
+      assert(Comp4.att1 == 1);
+      assert(Comp4.att2  == -80);
+      assert(Comp4.att3 == model.iot.component.Component_4.enum1.OFF);
+
+      Comp11_2.preset();
+      assert(Comp11_2.att3 == enum1.OFF);
+      assert(Comp11_2.att1 == 1);
+      assert(Comp11_2.att3 == Component_11.enum1.OFF);
+
+      Comp8.preset();
+      assert(Comp8.att1 == 0);
+      assert(Comp8.att2 == 0);
+      assert(Comp8.att3 == 0);
+      assert(Comp8.att4 == 0);
+      assert(Comp8.att5 == 0);
+      assert(Comp8.att6 == 0);
+      assert(Comp8.att1CntMode == model.iot.component.Component_8.enum1.OFF);
+      assert(Comp8.att1CntRes == 0);
+
+      Comp5_1.preset();
+      assert(Comp5_1.att1 == 0);
+
+      Comp5_2.preset();
+      assert(Comp5_2.att1 == 0);
+
+      Comp7.operation_1(Util.operation_1(Comp2.operation_5()));
+      assert(Comp7.att1 == Util.operation_2(Comp2.operation_5()));
+
+      Comp13.operation_1(Util.operation_1(Comp2.operation_4()));
+      assert(Comp13.att1 == Util.operation_2(Comp2.operation_4()));
+
+      Comp12.operation_1(Component_12.enum1.ON);
+      assert(Comp12.att1 == Component_12.enum1.ON);
+
+      Comp12.operation_2(Component_12.enum1.ON);
+      assert(Comp12.att2 == Component_12.enum1.ON);
+
+      Comp1.att1(Comp9.operation_2());
+      assert(Comp1.att1 == Comp9.operation_2());
+
+      Comp4.operation_1(Component_4.enum2.SCALAR);
+      assert(Comp4.att4 == Component_4.enum2.SCALAR);
+
+      Comp4.operation_4(Component_4.enum3.RX);
+      assert(Comp4.att5 == Component_4.enum3.RX);
+
+      Comp4.operation_2(Comp2.operation_2());
+      assert(Comp4.att1 == Comp2.operation_2());
+
+      Comp4.operation_3(fml.operation_3());
+      assert(Comp4.att2 == fml.operation_3());
+
+      Comp5_1.operation_1(((Comp2.operation_2());
+      assert(Comp5_1.att1 == Comp2.operation_2());
+
+        }

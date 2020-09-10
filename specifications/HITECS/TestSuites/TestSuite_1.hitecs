@@ -1,0 +1,43 @@
+
+namespace TestSuites;
+private import Activities::*;
+private import Component::*;
+private import TestCases::*;
+
+
+testsuite testsuite_1{
+
+@Create
+public testsuite_1(){
+        double baseAtt1=11719.5;
+
+        for(int i=0;i< 20;i++){
+            baseAtt1+=39.0;
+            Comp9=new Component_9(1,"Component_8T1");
+            Comp21=new Component_2(baseAtt1+2000,baseAtt1,Component_2.enum1.V,Component_2.enum1.H,i+1);
+            Comp22=new Component_2(baseAtt1+2019.5,baseAtt1+19.5,Component_2.enum1.V,Component_2.enum1.H,i+2);
+
+
+            if(i<1){
+                add(new TestCase2(Comp9,Comp21));
+                add(new TestCase2(Comp9,Comp22));
+            }
+
+            add(new TestCase1(Comp9,Comp21));
+            add(new TestCase3(Comp9,Comp21));
+            add(new TestCase4(Comp9,Comp21));
+            add(new TestCase5(Comp9,Comp21));
+            add(new TestCase6(Comp9,Comp21));
+            add(new TestCase7(Comp9,Comp21));
+
+            add(new TestCase1(Comp9,Comp22));
+            add(new TestCase3(Comp9,Comp22));
+            add(new TestCase4(Comp9,Comp22));
+            add(new TestCase5(Comp9,Comp22));
+            add(new TestCase6(Comp9,Comp22));
+            add(new TestCase7(Comp9,Comp22));
+
+
+        }
+
+  }

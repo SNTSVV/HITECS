@@ -1,0 +1,35 @@
+namespace Activities;
+private import Component::*;
+
+activity Activity_25(in Comp9:Component_9,in Comp2:Component_2,in Comp11_1:Component_11,in Comp8:Component_8,in Comp10:Component_10,in fml:Formula,in ctx:Context){
+
+      Comp8.preset();
+
+
+      Comp8.operation_5(fml.operation_6());
+
+
+      Comp8.setoperation_27(100);
+
+
+      Comp8.operation_9(Component_8.att4_AUTO);
+
+
+      Comp8.operation_11(100);
+
+
+      Comp8.operation_3(ctx.operation_3());
+
+
+      Comp11_1.operation_3(fml.operation_12());
+
+
+      Comp11_1.setAM(Component_11.enum1.OFF);
+
+
+      Comp10.operation_2(Component_10.enum1.LIMITER);
+
+
+      Comp11_1.operation_3(fml.operation_13());
+
+    }

@@ -1,0 +1,24 @@
+namespace Component;
+    component Component_9{
+
+
+private name:String;
+private att2:Integer;
+private att5:Integer;
+@Create
+public Component_9(in att2:Integer,in name:String){
+    this.att2=att2;
+    this.name=name;
+    this.att5=1111;
+    }
+
+@Act
+public operation_2():Integer{
+    return this.att2;
+    }
+
+@Act
+public operation_6():Integer{
+    return this.att5;
+    }
+    }

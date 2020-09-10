@@ -1,0 +1,18 @@
+namespace Activities;
+private import Component::*;
+
+activity Activity_17(in Comp9:Component_9,in Comp2:Component_2,in Comp11_1:Component_11,in Comp4:Component_4){
+    		//@SimTime("Comp4_reset_record", "uniform");
+        Comp4.reset();
+        assert(Comp4.att1 == 1);
+        assert(Comp4.att2 == -80);
+        assert(Comp4.att3 == Component_4.enum1.OFF);
+        //@SimTime("Comp4_preset_record", "uniform");
+        Comp4.preset();
+        assert(Comp4.att1 == 1);
+        assert(Comp4.att2 == -80);
+        assert(Comp4.att3 == Component_4.enum1.OFF);
+        //@SimTime("Comp11_1_setAM_record", "uniform");
+        Comp11_1.setAM(Component_11.enum1.OFF);
+        assert(Comp11_1.att6 == Component_11.enum1.OFF);
+        }

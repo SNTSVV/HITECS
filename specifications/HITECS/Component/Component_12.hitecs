@@ -1,0 +1,37 @@
+namespace Component;
+    component Component_12{
+
+
+public enum enum1 {
+  ON,
+  OFF
+}
+
+private att1:enum1;
+private att2:enum1;
+
+public activity getInstance():Component_12[0..1]{
+    instance=Component_12.allInstances();
+    if(instance->isEmpty()){
+    instance=new Component_12();
+    }
+    return instance->first();
+    }
+@Initialize
+public operation_1(in mode:enum1){
+    this.att1=mode;
+    }
+@Initialize
+public operation_2(in mode:enum1){
+    this.att2=mode;
+    }
+
+@Act
+public operation_1(in mode:enum1){
+    this.att1=mode;
+    }
+@Act
+public operation_2(in mode:enum1){
+    this.att2=mode;
+    }
+    }

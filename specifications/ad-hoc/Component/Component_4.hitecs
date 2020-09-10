@@ -1,0 +1,180 @@
+namespace Component;
+    component Component_4{
+
+public enum enum1 {
+  ON,
+  OFF
+}
+
+public enum enum2 {
+  SCALAR
+}
+
+public enum enum3 {
+  RX,
+  TX,
+  GDEL
+}
+
+public enum enum4 {
+  ONCE
+}
+
+private att1:Real;
+private att2:Real;
+private att3:enum1;
+private att4:enum2;
+private att5:enum3;
+private att6:Integer;
+private att7:Integer;
+private att8:Real;
+private att9:Real;
+private att10:Real;
+private att11:Integer;
+private att12:enum1;
+private att13:Integer;
+private att14:Integer;
+private att15:Integer;
+private att16:enum1;
+private att17:enum1;
+private att18:Real;
+private att19:Integer;
+private att20:enum4;
+private Comp4:Component_4;
+
+
+public activity getInstance(in att5:Integer):Component_4[0..1]{
+    Comp4=Component_4.allInstances();
+
+    if(att5==1){
+
+    if(Comp4->isEmpty()){
+    Comp4=new Component_4();
+    }
+    return Comp4->first();
+    }
+    return null;
+    }
+
+@Initialize
+public operation_1(in mode:enum2){
+    this.att4=mode;
+    }
+
+@Initialize
+public operation_2(in att1:Real){
+    this.att1=att1;
+    }@Initialize
+
+@Initialize
+public operation_3(in lv:Real){
+    this.att2=lv;
+    }
+
+
+@Act
+public reset(){
+    att1=1;
+    att2=-80;
+    att3=enum1.OFF;
+    }
+
+@Act
+public preset(){
+    att1=1;
+    att2=-80;
+    att3=enum1.OFF;
+    }
+
+@Act
+public operation_4(in type:enum3){
+    this.att5=type;
+    }
+
+
+@Act
+public operation_7(in value:Integer){
+    this.att6=value;
+    }
+
+@Act
+public operation_6(in value:Integer){
+    this.att7=value;
+    }
+
+@Act
+public operation_10(in att1:Real){
+    this.att8=att1;
+    }
+
+@Act
+public operation_11(in att1:Real){
+    this.att9=att1;
+    }
+
+@Act
+public operation_12(in lv:Real){
+    this.att10=lv;
+    }
+
+@Act
+public operation_13(in value:Integer){
+    this.att11=value;
+    }
+
+@Act
+public operation_15(in mode:enum1){
+    this.att12=mode;
+    }
+
+@Act
+public operation_14(in value:Integer){
+    this.att13=value;
+    }
+
+@Act
+public operation_16(in value:Integer){
+    this.att14=value;
+    }
+
+@Act
+public operation_17(in value:Integer){
+    this.att15=value;
+    }
+
+@Act
+public operation_18(in mode:enum1){
+    this.att16=mode;
+    }
+
+@Act
+public operation_19(in mode:enum1){
+    this.att17=mode;
+    }
+
+@Act
+public operation_22(in att1:Real){
+    this.att18=att1;
+    }
+
+@Act
+public operation_21(in value:Integer){
+    this.att19=value;
+    }
+
+@Act
+public operation_23(in mode:enum4){
+    this.att20=mode;
+    }
+
+@Cleanup
+public operation_3(in lv:Real){
+    this.att2=lv;
+    }
+
+@Cleanup
+public operation_25(in mode:enum1){
+    this.att3=mode;
+    }
+
+    }

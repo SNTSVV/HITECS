@@ -1,0 +1,32 @@
+namespace Activities;
+private import Component::*;
+
+activity Activity_28(in Comp9:Component_9,in Comp2:Component_2,in Comp11_1:Component_11,in Comp8:Component_8,in Comp4:Component_4,in Comp7:Component_7,in fml:Formula){
+      //@SimTime("Comp8_operation_20_record", "uniform");
+      Comp8.setoperation_2(fml.operation_26());
+      assert(Comp8.att12 == fml.operation_26());
+      //@SimTime("Comp8_operation_5_record", "uniform");
+      Comp8.operation_5(fml.operation_20());
+      assert(Comp8.att2 == fml.operation_20());
+      //@SimTime("Comp8_operation_1_record", "uniform");
+      Comp8.setoperation_27(20);
+      assert(Comp8.att3 == 20);
+      //@SimTime("Comp8_operation_9_record", "uniform");
+      Comp8.operation_9(Component_8.att4_AUTO);
+      assert(Comp8.att4 == Component_8.att4_AUTO);
+      //@SimTime("Comp8_operation_5_record", "uniform");
+      Comp8.operation_5(fml.operation_22());
+      assert(Comp8.att2 == fml.operation_22());
+      //@SimTime("Comp8_operation_5_record", "uniform");
+      Comp8.operation_5(fml.operation_23());
+      assert(Comp8.att2 == fml.operation_23());
+      //@SimTime("Comp8_operation_5_record", "uniform");
+      Comp8.operation_5(fml.operation_24());
+      assert(Comp8.att2 == fml.operation_24());
+      //@SimTime("Comp11_1_operation_25_record", "uniform");
+      Comp11_1.operation_25(Component_11.enum1.OFF);
+      assert(Comp11_1.att3 == Component_11.enum1.OFF);
+      //@SimTime("Comp4_operation_25_record", "uniform");
+      Comp4.operation_25(Component_4.enum1.OFF);
+      assert(Comp4.att3 == Component_4.enum1.OFF);
+        }

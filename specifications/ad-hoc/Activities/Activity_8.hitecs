@@ -1,0 +1,45 @@
+namespace Activities;
+private import Component::*;
+
+activity Activity_8(in Comp9:Component_9,in Comp2:Component_2,in Comp8:Component_8,in Comp11_2:Component_11,in Comp5_2:Component_5,in Comp7:Component_7,in fml:Formula,in util:Util,in ctx:Context){
+
+      Comp8.operation_5(fml.operation_6());
+
+
+      Comp8.setoperation_27(500);
+
+
+      Comp8.operation_9(Component_8.att4_AUTO);
+
+
+      Comp8.operation_3(fml.operation_1());
+
+
+      Comp11_2.operation_1(((fml.operation_7());
+
+
+      Comp5_2.operation_1(((fml.operation_7());
+
+
+      Comp7.operation_1(Util.operation_1(Comp2.operation_5()));
+
+
+      Comp11_2.operation_25(Component_11.enum1.ON);
+
+
+      Comp8.setoperation_27(100);
+
+
+      Comp8.operation_13(ctx.operation_2());
+
+
+      Comp8.operation_5(fml.operation_7());
+
+
+      Comp8.operation_13(ctx.operation_2());
+
+
+      Comp11_2.operation_25(Component_11.enum1.OFF);
+
+
+        }

@@ -1,0 +1,49 @@
+namespace Component;
+    component Component_5{
+private Comp5_1:Component_5;
+private Comp5_2:Component_5;
+private att1:Real;
+
+public activity getInstance(in att5:Integer):Component_5[0..1]{
+    Comp5_1=Component_5.allInstances();
+    Comp5_2=Component_5.allInstances();
+    if(att5==1){
+
+    if(Comp5_1->isEmpty()){
+    Comp5_1=new Component_5();
+    }
+    return Comp5_1->first();
+    }
+
+    if(att5==2){
+    if(Comp5_2->isEmpty()){
+    Comp5_1=new Component_5();
+    }
+    return Comp5_2->first();
+
+    }
+    return null;
+    }
+
+@Intialize
+public reset(){
+    att1=0;
+    }
+
+@Intialize
+public preset(){
+    att1=0;
+    }
+
+@Intialize
+public operation_1(in att1:Real){
+    this.att1=att1;
+    }
+
+@Act
+public operation_1(in att1:Real){
+    this.att1=att1;
+    }
+
+
+    }

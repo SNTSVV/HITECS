@@ -1,0 +1,29 @@
+namespace Activities;
+private import Component::*;
+
+activity Activity_10(in Comp9:Component_9,in Comp2:Component_2,in Comp4:Component_4){
+      //@SimTime("Comp4_operation_4t_record", "uniform");
+      Comp4.operation_4(Component_4.enum3.RX);
+      assert(Comp4.att5 == Component_4.enum3.RX);
+      //@SimTime("Comp4_operation_13_record", "uniform");
+      Comp4.operation_13(1);
+      assert(Comp4.att11 == 1);
+      //@SimTime("Comp4_operation_15_record", "uniform");
+      Comp4.operation_15(Component_4.enum1.ON);
+      assert(Comp4.att12 == Component_4.enum1.ON);
+      //@SimTime("Comp4_operation_21_record", "uniform");
+      Comp4.operation_21(1);
+      assert(Comp4.att19 == 1);
+      //@SimTime("Comp4_operation_18_record", "uniform");
+      Comp4.operation_18(Component_4.enum1.ON);
+      assert(Comp4.att16 == Component_4.enum1.ON);
+      //@SimTime("Comp4_operation_23_record", "uniform");
+      Comp4.operation_23(Component_4.enum4.ONCE);
+      assert(Comp4.att20 == Component_4.enum4.ONCE);
+      //@SimTime("Comp4_operation_25_record", "uniform");
+      Comp4.operation_25(Component_4.enum1.ON);
+      assert(Comp4.att3 == Component_4.enum1.ON);
+      //@SimTime("Comp4_operation_25_record", "uniform");
+      Comp4.operation_25(Component_4.enum1.OFF);
+      assert(Comp4.att3 == Component_4.enum1.OFF);
+        }

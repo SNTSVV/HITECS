@@ -1,0 +1,29 @@
+namespace Activities;
+private import Component::*;
+
+activity Activity_10(in Comp9:Component_9,in Comp2:Component_2,in Comp4:Component_4){
+
+      Comp4.operation_4(Component_4.enum3.RX);
+
+
+      Comp4.operation_13(1);
+
+
+      Comp4.operation_15(Component_4.enum1.ON);
+
+
+      Comp4.operation_21(1);
+
+
+      Comp4.operation_18(Component_4.enum1.ON);
+
+
+      Comp4.operation_23(Component_4.enum4.ONCE);
+
+
+      Comp4.operation_25(Component_4.enum1.ON);
+
+
+      Comp4.operation_25(Component_4.enum1.OFF);
+
+        }

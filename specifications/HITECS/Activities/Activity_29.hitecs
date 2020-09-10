@@ -1,0 +1,24 @@
+namespace Activities;
+private import Component::*;
+
+activity Activity_29(in Comp9:Component_9,in Comp2:Component_2,in Comp11_1:Component_11,in Comp8:Component_8,in fml:Formula){
+
+      Comp8.operation_5(fml.operation_6());
+
+
+      Comp11_1.setLFFreq(10.2);
+
+
+      Comp11_1.setAMIndex(10);
+
+
+      Comp11_1.setAM(Component_11.enum1.ON);
+
+
+      Comp11_1.operation_25(Component_11.enum1.ON);
+
+
+      Comp11_1.operation_3(fml.operation_2(());
+
+
+        }

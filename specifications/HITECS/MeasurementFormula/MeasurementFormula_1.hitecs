@@ -1,0 +1,7 @@
+namespace MeasurementFormula;
+
+measurementformula MeasurementFormula_1(in arg1 : Real) : Real {
+
+att1 : Real = const1 * PI * pow(arg1,2);
+return log10(att1);
+}

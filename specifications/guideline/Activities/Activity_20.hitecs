@@ -1,0 +1,30 @@
+namespace Activities;
+private import Component::*;
+
+activity Activity_20(in Comp9:Component_9,in Comp2:Component_2,in Comp7:Component_7,in Comp8:Component_8,in fml:Formula,in util:Util,in ctx:Context){
+      //@SimTime("Comp7_operation_1_record", "uniform");
+      Comp7.operation_1(Util.operation_1(Comp2.operation_5()));
+      assert(Comp7.att1 == Util.operation_2(Comp2.att4));
+      //@SimTime("Comp8_operation_3_record", "uniform");
+      Comp8.operation_3(fml.operation_1());
+      assert(Comp8.att1 == fml.operation_1());
+      //@SimTime("Comp8_operation_5_record", "uniform");
+      Comp8.operation_5(Comp2.operation_3());
+      assert(Comp8.att2 == Comp2.operation_3());
+      //@SimTime("Comp8_operation_1_record", "uniform");
+      Comp8.setoperation_27(100);
+      assert(Comp8.att3 == 100);
+      //@SimTime("Comp8_operation_9_record", "uniform");
+      Comp8.operation_9(Component_8.att4_AUTO);
+      assert(Comp8.att4 == Component_8.att4_AUTO);
+      //@SimTime("Comp8_operation_11_record", "uniform");
+      Comp8.operation_11(100);
+      assert(Comp8.att5 == 100);
+      //@SimTime("Comp8_operation_13_record", "uniform");
+      Comp8.operation_13(ctx.operation_2());
+      assert(Comp8.att6 == ctx.operation_2());
+
+
+      assert(Comp8.att6 <= Comp8.att1 - 50);
+
+        }

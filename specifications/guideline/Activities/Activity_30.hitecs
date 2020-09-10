@@ -1,0 +1,21 @@
+namespace Activities;
+private import Component::*;
+
+activity Activity_30(in Comp9:Component_9,in Comp2:Component_2,in Comp8:Component_8){
+      //@SimTime("Comp8_operation_9_record", "uniform");
+      Comp8.operation_9(3);
+      assert(Comp8.att4 == 3);
+      //@SimTime("Comp8_operation_13_record", "uniform");
+      Comp8.operation_13(Comp8.operation_6());
+      assert(Comp8.att6 == Comp8.att2);
+      //@SimTime("Comp8_operation_1CntMode_record", "uniform");
+      Comp8.operation_1((CntMode(Component_8.enum1.ON);
+      assert(Comp8.att1CntMode == Component_8.enum1.ON);
+      //@SimTime("Comp8_operation_1CntRes_record", "uniform");
+      Comp8.operation_1((CntRes(0.01);
+      assert(Comp8.att1CntRes == 0.01);
+      //@SimTime("Comp8_operation_1CntMode_record", "uniform");
+      Comp8.operation_1((CntMode(Component_8.enum1.OFF);
+      assert(Comp8.att1CntMode == Component_8.enum1.OFF);
+
+        }

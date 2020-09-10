@@ -1,0 +1,11 @@
+namespace Activities;
+private import Component::*;
+
+activity Activity_23(in Comp9:Component_9,in Comp2:Component_2,in Comp11_1:Component_11,in fml:Formula){
+
+      Comp11_1.operation_3(fml.operation_10());
+
+
+      Comp11_1.operation_3(fml.operation_11());
+
+        }

@@ -1,0 +1,104 @@
+namespace Component;
+    component Component_2{
+
+public enum enum1 {
+  H, V
+}
+
+public enum enum2 {
+  L, S, C, X, Ku, K, Ka
+}
+
+private att1:Real;
+private att2:Real;
+private att3:enum1;
+private att4:enum1;
+private att5:Integer;
+private att6:enum2;
+
+
+public activity getInstance():Component_2[0..1]{
+    instance=Component_2.allInstances();
+    if(instance->isEmpty()){
+    instance=new Component_2();
+    }
+
+    return instance->first();
+    }
+
+@Create
+private Component_2(in att1:Real,in att2:Real,in att3:enum1,in att4:enum1,in att5:Integer){
+    this.att1=att1;
+    this.att2=att2;
+    this.att3=att3;
+    this.att4=att4;
+    this.att5=att5;
+    }
+
+@Act
+public operation_1(in att1:Real):enum2{
+
+    if(att1>=1&&att1< 2){
+    return enum2.L;
+
+    }
+    else if(att1>=2&&att1< 4){
+    return enum2.S;
+
+    }
+    else if(att1>=4&&att1< 8){
+    return enum2.C;
+
+    }
+    else if(att1>=8&&att1< 12){
+    return enum2.X;
+
+    }
+    else if(att1>=12&&att1< 18){
+    return enum2.Ku;
+
+    }
+    else if(att1>=18&&att1< 26){
+    return enum2.K;
+    }
+    else if(att1>=26&&att1< 40){
+    return enum2.Ka;
+
+    }
+
+    else{
+    return enum2.L;
+    }
+    }
+
+@Act
+public operation_2():Real{
+    return this.att1;
+    }
+@Act
+public operation_3():Real{
+    return this.att2;
+    }
+@Act
+public operation_4():enum1{
+    return this.att3;
+    }
+
+@Act
+public operation_5():enum1{
+    return this.att4;
+    }
+
+@Act
+public operation_6():Integer{
+    return this.att5;
+    }
+
+@Act
+public operation_7():enum2[0..*]{
+    return Component_2::getInstance().enum2(Component_2::getInstance().operation_2());
+
+    }
+
+
+    }

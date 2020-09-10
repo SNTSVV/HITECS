@@ -1,0 +1,23 @@
+namespace Activities;
+private import Component::*;
+
+activity Activity_9(in Comp9:Component_9,in Comp2:Component_2,in Comp8:Component_8,in Comp11_1:Component_11,in fml:Formula){
+  		//@SimTime("Comp8_operation_5_record", "uniform");
+      Comp8.operation_5(fml.operation_6());
+      assert(Comp8.att2 == fml.operation_6());
+      //@SimTime("Comp11_1_setLFFreq_record", "uniform");
+      Comp11_1.setLFFreq(10.2);
+      assert(Comp11_1.att4 == 10.2);
+      //@SimTime("Comp11_1_operation_1_record", "uniform");
+      Comp11_1.operation_1(10);
+      assert(Comp11_1.att5 == 10);
+      //@SimTime("Comp11_1_setAM_record", "uniform");
+      Comp11_1.setAM(Component_11.enum1.ON);
+      assert(Comp11_1.att6 == Component_11.enum1.ON);
+      //@SimTime("Comp11_1_operation_25_record", "uniform");
+      Comp11_1.operation_25(Component_11.enum1.ON);
+      assert(Comp11_1.att3 == Component_11.enum1.ON);
+      //@SimTime("Comp11_1_operation_3_record", "uniform");
+      Comp11_1.operation_3(fml.operation_3());
+      assert(Comp11_1.att2 == fml.operation_3());
+        }

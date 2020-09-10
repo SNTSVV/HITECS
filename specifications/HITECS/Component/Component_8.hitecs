@@ -1,0 +1,162 @@
+namespace Component;
+    component Component_8{
+
+public enum enum2 {
+  INIT,
+  NOIS_MEAS
+}
+
+public enum enum1 {
+  ON,
+  OFF
+}
+
+public enum enum3 {
+  INIT,
+  SHORT
+}
+
+private att1:Real;
+private att2:Real;
+private att3:Real;
+private att4:Real;
+private att5:Real;
+private att6:Real;
+private att7:enum1;
+private att8:Real;
+private att9:Real;
+private att10:enum1;
+private att11:Integer;
+private att12:Real;
+private att13:Real;
+
+
+public activity getInstance():Component_8[0..1]{
+    instance=Component_8.allInstances();
+    if(instance->isEmpty()){
+    instance=new Component_8();
+    }
+
+    return instance->first();
+
+
+    }
+
+@Intialize
+public reset(){
+    this.att1=0;
+    this.att2=0;
+    this.att3=0;
+    this.att4=0;
+    this.att5=0;
+    this.att6=0;
+    this.att7=enum1.OFF;
+    this.att8=0;
+    }
+
+@Intialize
+public preset(){
+    this.att1=0;
+    this.att2=0;
+    this.att3=0;
+    this.att4=0;
+    this.att5=0;
+    this.att6=0;
+    this.att7=enum1.OFF;
+    this.att8=0;
+    }
+
+@Act
+public preset(){
+    this.att1=0;
+    this.att2=0;
+    this.att3=0;
+    this.att4=0;
+    this.att5=0;
+    this.att6=0;
+    this.att7=enum1.OFF;
+    this.att8=0;
+    }
+@Act
+public operation_3(in lv:Real){
+    this.att1=lv;
+    }
+
+@Act
+public operation_4():Real{
+    return this.att1;
+    }
+@Act
+public operation_5(in att1:Real){
+    this.att2=att1;
+    }
+@Act
+public operation_6():Real{
+    return this.att2;
+    }
+@Act
+public operation_7(in bandwatt5th:Real){
+    this.att9=bandwatt5th;
+    }
+
+@Act
+public operation_8(in att1:Real){
+    this.att13=att1;
+    }
+
+@Act
+public operation_1(in span:Real){
+    this.att3=span;
+    }
+@Act
+public operation_2():Real{
+    return this.att3;
+    }
+
+@Act
+public operation_9(in rbw:Real){
+    this.att4=rbw;
+    }
+@Act
+public operation_10():Real{
+    return this.att4;
+    }
+
+@Act
+public operation_11(in vbw:Real){
+    this.att5=vbw;
+    }
+
+@Act
+public operation_12():Real{
+    return this.att5;
+    }
+@Act
+public operation_13(in att6:Real){
+    this.att6=att6;
+    }
+@Act
+public operation_15():Real{
+    return this.att6;
+    }
+
+@Act
+public operation_16():enum1{
+    return this.att7;
+    }
+
+
+
+@Act
+public operation_18(in mode:enum1){
+    this.att10=mode;
+    }
+@Act
+public operation_19(in value:Integer){
+    this.att11=value;
+    }
+@Act
+public operation_20(in peak:Real){
+    this.att12=peak;
+    }
+    }

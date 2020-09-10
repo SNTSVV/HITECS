@@ -1,0 +1,44 @@
+namespace Component;
+
+component Component_1{
+private att1:Integer=0;
+private att2:Component_2.enum2;
+private att3:Component_2.enum2;
+
+
+public activity getInstance():Component_1[0..1]{
+    instance=Component_1.allInstances();
+    if(instance->isEmpty()){
+    instance=new Component_1();
+    }
+
+    return instance->first();
+    }
+
+@Initialize
+public preset(){
+    this.att1=-1;
+    }
+
+@Initialize
+public operation_1(in att2:Integer){
+    this.att1=att2;
+    }
+
+@Initialize
+public operation_1():Integer{
+    return this.att1;
+    }
+
+@Initialize
+public operation_2(in att1:Real){
+    txenum2=Component_2::getInstance().enum2(att1);
+    }
+
+@Initialize
+public operation_3(in att1:Real){
+    rxenum2=Component_2::getInstance().enum2(att1);
+    }
+
+
+    }

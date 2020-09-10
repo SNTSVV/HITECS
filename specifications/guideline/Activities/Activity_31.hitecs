@@ -1,0 +1,34 @@
+namespace Activities;
+private import Component::*;
+
+activity Activity_31(in Comp9:Component_9,in Comp2:Component_2,in Comp11_1:Component_11,in Comp8:Component_8,in fml:Formula,in ctx:Context){
+
+      for (int cnt = 0; cnt < 10; cnt++) {
+        //@simTime("Comp11_1_operation_25_record", "uniform");
+        Comp11_1.operation_25(Component_11.enum1.ON);
+        assert(Comp11_1.att3 == Component_11.enum1.ON);
+        //@simTime("Comp11_1_operation_3_record", "uniform");
+        Comp11_1.operation_3(fml.operation_4());
+        assert(Comp11_1.att2 == fml.operation_4());
+
+      }
+      //@simTime("Comp11_1_operation_3_record", "uniform");
+      Comp11_1.operation_3(fml.operation_3());
+      assert(Comp11_1.att2 == fml.operation_3());
+      //@simTime("Comp8_operation_13_record", "uniform");
+      Comp8.operation_13(ctx.operation_2());
+      assert(Comp8.att6 == ctx.operation_2());
+      //@simTime("Comp8_operation_3_record", "uniform")
+      Comp8.operation_3(ctx.operation_1(());
+      assert(Comp8.att1 == ctx.operation_1(());
+
+      if (Comp8.att1CntMode == enum1.OFF) {
+        //@simTime("Comp8_operation_5_record", "uniform");
+        Comp8.operation_5(Comp8.operation_15());
+        assert(Comp8.att2 == Comp8.att6);
+
+      }
+
+      assert (ctx.operation_2() <= Comp2.operation_3() + 20);
+      assert (ctx.operation_2() >= Comp2.operation_3() - 20);
+        }

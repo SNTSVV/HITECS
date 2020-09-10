@@ -1,0 +1,59 @@
+namespace Component;
+
+component Util {
+
+  @Create
+  private Util() {
+  }
+
+  public activity getInstance() :Util[0..1]
+
+  {
+    instance = Util.allInstances();
+    if (instance -> isEmpty()) {
+      instance = new Util();
+    }
+
+    return instance -> first();
+
+
+  }
+
+  @Act
+  public operation_1(in pol :Component_2.enum1) :Component_3.enum1
+
+  {
+    if (pol == Component_2.enum1.H) {
+      return Component_3.enum1.H;
+    }
+    return Component_3.enum1.V;
+  }
+  @Act
+  public operation_2(in pol :Component_2.enum1) :Component_13.enum1
+
+  {
+    if (pol == Component_2.enum1.H) {
+      return Component_13.enum1.H;
+    }
+    return Component_13.enum1.V;
+  }
+  @Act
+  public operation_3(in pol :Component_2.enum1) :Component_7.enum1
+
+  {
+    if (pol == Component_2.enum1.H) {
+      return Component_7.enum1.H;
+    }
+    return Component_7.enum1.V;
+  }
+  @Act
+  public operation_4(in pol :Component_2.enum1) :Component_6.enum1
+
+  {
+    if (pol == Component_2.enum1.H) {
+      return Component_6.enum1.H;
+    }
+    return Component_6.enum1.V;
+
+  }
+}

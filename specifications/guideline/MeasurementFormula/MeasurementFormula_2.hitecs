@@ -1,0 +1,14 @@
+namespace MeasurementFormula;
+
+measurementformula MeasurementFormula_2(in arg1 : Real, in arg2 : Real, in arg3 : Real, in arg4 : Real) : Real {
+
+att1 : Uniform(const1,const2) = Unknown;
+att2 : Uniform(const3,const4) = Unknown;
+att3 : Real = const5;
+att4 : Uniform(const6,const7) = Unknown;
+att5 : Real = att1/att2;
+
+att6 : Real = (arg2 - att1)/att1 + arg3 - arg4 + att4 + log10(att3)- const8 - arg1 + log10(att5/(att5-1));
+
+return log10(att6);
+}

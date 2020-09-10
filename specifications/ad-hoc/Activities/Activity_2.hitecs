@@ -1,0 +1,17 @@
+namespace Activities;
+private import Component::*;
+
+activity Activity_2(in Comp9:Component_9,in Comp2:Component_2,in Comp11_1:Component_11){
+
+      Comp11_1.operation_25(Component_11.enum1.OFF);
+      assert(Comp11_1.att3 == Component_11.enum1.OFF);
+
+      Comp11_1.operation_3(-80);
+      assert(Comp11_1.att2 == -80);
+
+      Comp3.operation_1(Component_3.enum1.LOAD);
+      assert(Comp3.att1 == Component_3.enum1.LOAD);
+
+      Comp13.operation_1(Component_13.enum1.LOAD);
+      assert(Comp13.att1 == Component_13.enum1.LOAD);
+        }

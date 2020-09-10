@@ -1,0 +1,111 @@
+namespace Component;
+component Formula {
+ @Act
+ public operation_1() : Real {
+  return Unknown;
+ }
+ @Act
+ public operation_3(): Real {
+  return Unknown;
+ }
+ @Act
+ public operation_2(): Real {
+  return Unknown;
+ }
+ @Act
+ public operation_4() : Real{
+  return Unknown;
+ }
+ @Act
+ public operation_5() : Real{
+  return Unknown;
+ }
+ @Act
+ public operation_6() : Real{
+  return Unknown;
+ }
+ @Act
+ public operation_7(): Real {
+  return Unknown;
+ }
+ @Act
+ public Component_8CF() : Real{
+  return Unknown;
+ }
+ @Act
+ public operation_10() : Real{
+  return Unknown;
+ }
+ @Act
+ public operation_11() : Real{
+  return Unknown;
+ }
+ @Act
+ public operation_12() : Real{
+  return Unknown;
+ }
+ @Act
+ public operation_13() : Real{
+  return Unknown;
+ }
+ @Act
+ public operation_14(): Real {
+  return Unknown;
+ }
+ @Act
+ public operation_15() : Real{
+  return Unknown;
+ }
+ @Act
+ public operation_16() : Real{
+  return Unknown;
+ }
+ @Act
+ public operation_17(): Real {
+  return Unknown;
+ }
+ @Act
+ public Step64(): Real {
+  return Unknown;
+ }
+ @Act
+ public operation_18(): Real {
+  return Unknown;
+ }
+ @Act
+ public operation_19() : Real{
+  return Unknown;
+ }
+ @Act
+ public operation_20() : Real{
+  return Unknown;
+ }
+ @Act
+ public operation_21(): Real {
+  return Unknown;
+ }
+ @Act
+ public operation_22(): Real {
+  return Unknown;
+ }
+ @Act
+ public operation_23() : Real{
+  return Unknown;
+ }
+ @Act
+ public operation_24(): Real {
+  return Unknown;
+ }
+ @Act
+ public operation_25() : Real{
+  return Unknown;
+ }
+ @Act
+ public operation_26(): Real {
+  return Unknown;
+ }
+ @Act
+ public operation_27(): Real {
+  return Unknown;
+ }
+}

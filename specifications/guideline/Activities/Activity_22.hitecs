@@ -1,0 +1,11 @@
+namespace Activities;
+private import Component::*;
+
+activity Activity_22(in Comp9:Component_9,in Comp2:Component_2,in Comp11_1:Component_11,in fml:Formula){
+    //@SimTime("Comp11_1_operation_3_record", "uniform");
+    Comp11_1.operation_3(fml.operation_10());
+    assert(Comp11_1.att2 == fml.operation_10());
+    //@SimTime("Comp11_1_operation_3_record", "uniform");
+    Comp11_1.operation_3(fml.operation_3());
+    assert(Comp11_1.att2 == fml.operation_3());
+        }

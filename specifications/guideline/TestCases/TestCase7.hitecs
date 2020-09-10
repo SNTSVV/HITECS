@@ -1,0 +1,84 @@
+namespace TestCases;
+private import Activities::*;
+private import Component::*;
+att6case TestCase7{
+
+
+    private  Comp1:Component_1[0..1];
+    private  Comp13:Component_13[0..1];
+    private  Comp7:Component_7[0..1];
+    private  Comp3:Component_3[0..1];
+    private  Comp11_1:Component_11[0..1];
+    private  Comp11_2:Component_11[0..1];
+    private  Comp8:Component_8[0..1];
+    private  Comp5_1:Component_5[0..1];
+    private  Comp5_2:Component_5[0..1];
+    private  Comp4:Component_4[0..1];
+    private  Comp12:Component_12[0..1];
+    private  Comp10:Component_10[0..1];
+    private  txComp6:Component_6[0..1];
+    private  rxComp6:Component_6[0..1];
+
+    private  fml:Formula;
+    private  ctx:Context[0..1];
+    private  util:Util[0..1];
+
+    private  name:String;
+    private  Comp9:Component_9;
+    private  Comp2:Component_2;
+
+    @Create
+    public TestCase7(in Comp9:Component_9,in Comp2:Component_2){
+            Comp1=Component_1.getInstance();
+            Comp13=Component_13.getInstance();
+            Comp7=Component_7.getInstance();
+            Comp3=Component_3.getInstance();
+            Comp11_1=Component_11.getInstance(1);
+            Comp11_2=Component_11.getInstance(2);
+            Comp8=Component_8.getInstance();
+            Comp5_1=Component_5.getInstance(1);
+            Comp5_2=Component_5.getInstance(2);
+            Comp4=Component_4.getInstance(1);
+            Comp12=Component_12.getInstance();
+            Comp10=Component_10.getInstance();
+            txComp6=Component_6.getInstance(Component_6.enum2.TX);
+            rxComp6=Component_6.getInstance(Component_6.enum2.RX);
+            fml=new Formula();
+            ctx=Context.getInstance();
+            util=Util.getInstance();
+            Comp9=Comp9;
+            Comp2=Comp2;
+            }
+
+    @Setup
+    public setup(){
+            Activity_13(Comp9,Comp2,Comp1,txComp6,rxComp6,Comp13,Comp7,Comp3,Comp11_1,Comp8,Comp5_1,Comp5_2,rxComp6,util);
+            }
+    @Main
+    public mesure(){
+
+            Activity_19(Comp9,Comp2,Comp8,Comp3,fml,util,ctx);
+            Activity_31(Comp9,Comp2,Comp11_1,Comp8,fml,ctx);
+            Activity_30(Comp9,Comp2,Comp8);
+            Activity_7(Comp9,Comp2,Comp8,Comp11_2,Comp5_2,Comp7,fml,util);
+            Activity_21(Comp9,Comp2,Comp8,Comp11_2,fml,ctx);
+            Activity_9(Comp9,Comp2,Comp8,Comp11_1,fml);
+            Activity_33(Comp9,Comp2);
+            Activity_23(Comp9,Comp2,Comp11_1,fml);
+            Activity_34(Comp9,Comp2);
+            Activity_24(Comp9,Comp2,Comp11_1,fml);
+            Activity_17(Comp9,Comp2,Comp11_1,Comp4);
+            Activity_6(Comp9,Comp2);
+            Activity_27(Comp9,Comp2,Comp11_1mComp8mnla1,Comp7,fml,ctx);
+            Activity_28(Comp9,Comp2,Comp8,Comp4,Comp7,fml);
+
+            }
+
+    @Teardown
+    public teardown(){
+            Activity_5(Comp9,Comp2,Comp11_1,Comp11_2,Comp3,Comp13,Comp7,Comp10);
+
+            }
+
+
+        }

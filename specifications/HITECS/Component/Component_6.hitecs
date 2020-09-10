@@ -1,0 +1,61 @@
+namespace Component;
+    component Component_6{
+
+private txComp6:Component_6;
+private rxComp6:Component_6;
+private att1:enum1;
+private state:enum3;
+
+public enum enum2 {
+  TX,
+  RX
+}
+
+public enum enum3 {
+  RESET,
+  ZERO
+}
+
+public enum enum1 {
+  LOAD,
+  V,
+  H
+}
+  public activity getInstance(in type :enum2) :Component_6[0..1]{
+    txComp6=Component_6.allInstances();
+    rxComp6=Component_6.allInstances();
+    if(type==enum2.TX){
+
+    if(txComp6->isEmpty()){
+    txComp6=new Component_6();
+    }
+    return txComp6->first();
+    }
+    if(type==enum2.RX){
+    if(rxComp6->isEmpty()){
+    rxComp6=new Component_6();
+    }
+    return rxComp6->first();
+
+
+    }
+    return null;
+    }
+
+@Initialize
+public reset(){
+    this.state=enum3.RESET;
+    }
+
+@Initialize
+public operation_1(){
+    this.state=enum3.ZERO;
+    }
+
+@Act
+public operation_2(in att1:enum1){
+    this.att1=att1;
+    }
+
+
+    }

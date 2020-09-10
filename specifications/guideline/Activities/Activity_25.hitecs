@@ -1,0 +1,42 @@
+namespace Activities;
+private import Component::*;
+
+activity Activity_25(in Comp9:Component_9,in Comp2:Component_2,in Comp11_1:Component_11,in Comp8:Component_8,in Comp10:Component_10,in fml:Formula,in ctx:Context){
+      //@SimTime("Comp8_preset_record", "uniform");
+      Comp8.preset();
+      assert(Comp8.att1 == 0);
+      assert(Comp8.att2 == 0);
+      assert(Comp8.att3 == 0);
+      assert(Comp8.att4 == 0);
+      assert(Comp8.att5 == 0);
+      assert(Comp8.att6 == 0);
+      assert(Comp8.att1CntMode == model.iot.component.Component_8.enum1.OFF);
+      assert(Comp8.att1CntRes == 0);
+      //@SimTime("Comp8_operation_5_record", "uniform");
+      Comp8.operation_5(fml.operation_6());
+      assert(Comp8.att2 == fml.operation_6());
+      //@SimTime("Comp8_operation_1_record", "uniform");
+      Comp8.setoperation_27(100);
+      assert(Comp8.att3 == 100);
+      //@SimTime("Comp8_operation_9_record", "uniform");
+      Comp8.operation_9(Component_8.att4_AUTO);
+      assert(Comp8.att4 == Component_8.att4_AUTO);
+      //@SimTime("Comp8_operation_11_record", "uniform");
+      Comp8.operation_11(100);
+      assert(Comp8.att5 == 100);
+      //@SimTime("Comp8_operation_3_record", "uniform");
+      Comp8.operation_3(ctx.operation_3());
+      assert(Comp8.att1 == ctx.operation_3());
+      //@SimTime("Comp11_1_operation_3_record", "uniform");
+      Comp11_1.operation_3(fml.operation_12());
+      assert(Comp11_1.att2 == fml.operation_12());
+      //@SimTime("Comp11_1_setAM_record", "uniform");
+      Comp11_1.setAM(Component_11.enum1.OFF);
+      assert(Comp11_1.att6 == Component_11.enum1.OFF);
+      //@SimTime("Comp10_operation_2_record", "uniform");
+      Comp10.operation_2(Component_10.enum1.LIMITER);
+      assert(Comp10.att1 == Component_10.enum1.LIMITER);
+      //@SimTime("Comp11_1_operation_3_record", "uniform");
+      Comp11_1.operation_3(fml.operation_13());
+      assert(Comp11_1.att2 == fml.operation_13());
+    }

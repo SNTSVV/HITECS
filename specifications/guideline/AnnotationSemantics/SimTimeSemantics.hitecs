@@ -1,0 +1,23 @@
+namespace AnnotationSemantics;
+annotation SimTimeSemantics{
+	public SimTime(in log : String, in type : String): String{
+		/*@inline('Java')
+			if (type.equals("uniform")) {
+				Random rand = new Random();
+				List<String> list=null;
+				try {
+					list = Files.readAllLines(Paths.get(log));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}	
+				int t = rand.nextInt(list.size());
+				return list.get(t); 
+			}
+			else {
+				return "0";
+			}
+		*/		
+
+	}
+}

@@ -1,0 +1,105 @@
+namespace Activities;
+private import Component::*;
+
+activity Activity_15(in Comp9:Component_9,in Comp2:Component_2,in Comp1:Component_1,in Comp13:Component_13,in Comp7:Component_7,in Comp12:Component_12,in Comp4:Component_4,in Comp5_1:Component_5,in fml:Formula,in util:Util){
+
+      Comp1.operation_2((Comp2.operation_2());
+
+
+      Comp1.operation_3((Comp2.operation_3());
+
+
+      Comp1.att1(Comp9.operation_2());
+
+
+      Comp13.operation_1(Component_13.enum1.LOAD);
+
+
+      Comp7.operation_1(Component_7.enum1.LOAD);
+
+
+      Comp3.operation_1(Component_3.enum1.LOAD);
+
+
+      txComp6.operation_2(Util.operation_1(Comp2.operation_4()));
+
+
+      rxComp6.operation_2(Util.operation_2(Comp2.operation_5()));
+
+
+      Comp4.reset();
+
+
+
+      Comp11_2.reset();
+
+
+      Comp8.reset();
+
+
+      Comp5_1.reset();
+
+
+      Comp5_2.reset();
+
+
+      txComp6.reset();
+
+
+      rxComp6.reset();
+
+
+      txComp6.operation_1();
+
+
+      rxComp6.operation_1();
+
+
+      Comp4.preset();
+
+
+
+
+      Comp11_2.preset();
+
+
+      Comp8.preset();
+
+
+      Comp5_1.preset();
+
+
+      Comp5_2.preset();
+
+
+      Comp7.operation_1(Util.operation_2(Comp2.operation_5()));
+
+
+      Comp13.operation_1(Util.operation_3(Comp2.operation_4()));
+
+
+      Comp12.operation_1(Component_12.enum1.ON);
+
+
+      Comp12.operation_2(Component_12.enum1.ON);
+
+
+      Comp1.att1(Comp9.operation_2());
+
+
+      Comp4.operation_1(Component_4.enum2.SCALAR);
+
+
+      Comp4.operation_4(Component_4.enum3.RX);
+
+
+      Comp4.operation_2(Comp2.operation_2());
+
+
+      Comp4.operation_3(fml.operation_3());
+
+
+      Comp5_1.operation_1(((Comp2.operation_2());
+
+
+        }

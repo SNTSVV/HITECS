@@ -1,0 +1,109 @@
+namespace Activities;
+private import Component::*;
+
+activity Activity_13(in Comp9:Component_9,in Comp2:Component_2,in Comp1:Component_1,in txComp6:TXComponent_6,in rxComp6:RXComponent_6,in Comp13:Component_13,in Comp7:Component_7,in Comp3:Component_3,in Comp11_1:Component_11,in Comp8:Component_8,in Comp5_1:Component_5,in rxComp6:RXComponent_6,in util:Util){
+
+
+      Comp1.operation_2((Comp2.operation_2());
+
+
+      Comp1.operation_3((Comp2.operation_3());
+
+
+      Comp1.att1(Comp9.operation_2());
+
+
+      txComp6.operation_2(Util.operation_1(Comp2.operation_4()));
+
+
+      rxComp6.operation_2(Util.operation_1(Comp2.operation_5()));
+
+
+      Comp13.operation_1(Component_13.enum1.LOAD);
+
+
+      Comp7.operation_1(Component_7.enum1.LOAD);
+
+
+      Comp3.operation_1(Component_3.enum1.LOAD);
+
+
+      Comp11_1.reset();
+
+
+
+
+      Comp11_2.reset();
+
+
+
+
+      Comp8.reset();
+
+
+
+
+
+
+
+
+
+      Comp5_1.reset();
+
+
+      Comp5_2.reset();
+
+
+      rxComp6.reset();
+
+
+      txComp6.reset();
+
+
+      txComp6.operation_1();
+
+
+      rxComp6.operation_1();
+
+
+      Comp11_1.preset();
+
+
+
+
+      Comp11_2.preset();
+
+
+
+
+      Comp8.preset();
+
+
+
+
+
+
+
+
+
+      Comp5_1.preset();
+
+
+      Comp5_2.preset();
+
+
+      Comp7.operation_1(Util.convertToComponent_7enum1(Comp2.operation_5()));
+
+
+      Comp13.operation_1(Util.convertToComponent_13enum1(Comp2.operation_4()));
+
+
+      Comp11_1.operation_1(((Comp2.operation_2());
+
+
+      Comp11_1.operation_3(fml.operation_3());
+
+
+      Comp5_1.operation_1(((Comp2.operation_2());
+
+        }

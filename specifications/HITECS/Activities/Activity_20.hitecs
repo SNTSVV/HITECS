@@ -1,0 +1,30 @@
+namespace Activities;
+private import Component::*;
+
+activity Activity_20(in Comp9:Component_9,in Comp2:Component_2,in Comp7:Component_7,in Comp8:Component_8,in fml:Formula,in util:Util,in ctx:Context){
+
+      Comp7.operation_1(Util.operation_1(Comp2.operation_5()));
+
+
+      Comp8.operation_3(fml.operation_1());
+
+
+      Comp8.operation_5(Comp2.operation_3());
+
+
+      Comp8.setoperation_27(100);
+
+
+      Comp8.operation_9(Component_8.att4_AUTO);
+
+
+      Comp8.operation_11(100);
+
+
+      Comp8.operation_13(ctx.operation_2());
+
+
+
+
+
+        }

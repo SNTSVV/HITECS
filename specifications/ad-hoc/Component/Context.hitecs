@@ -1,0 +1,44 @@
+namespace Component;
+
+component Context {
+
+@Create
+private Context() {
+  }
+
+public activity getInstance() :Context[0..1]
+
+  {
+    instance = Context.allInstances();
+    if (instance -> isEmpty()) {
+      instance = new Context();
+    }
+
+    return instance -> first();
+  }
+
+
+private att1 :Integer;
+@Act
+public operation_2() :Real {
+    return Unknown;
+  }
+@Act
+public operation_1():Real{
+    return Unknown;
+  }
+@Act
+public operation_3():Real{
+    return Unknown;
+  }
+@Act
+public operation_4():Real{
+    return Unknown;
+  }
+@Act
+public operation_5():Integer{
+    return this.att1;
+  }
+
+
+}

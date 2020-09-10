@@ -1,0 +1,11 @@
+namespace Scheduler;
+private import TestSuites::*;
+
+
+scheduler Scheduler_1{
+   suite=new testsuite_1();
+        for(tc in suite)
+        {
+            tc.exec();
+        }
+        }

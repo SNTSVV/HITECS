@@ -1,0 +1,8 @@
+namespace Activities;
+private import Component::*;
+
+activity Activity_6(in Comp9:Component_9,in Comp2:Component_2){
+
+
+
+        }
