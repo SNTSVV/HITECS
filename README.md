@@ -62,3 +62,5 @@ This page contains the artifacts related to an article entitled "Uncertainty-awa
 * HITECS tool is available upon request.  
   Contact: Karim Chaouch (karim.chaouch@uni.lu) and Seung Yeob Shin (seungyeob.shin@uni.lu)
 
+## Licensing
+This software is © University of Luxembourg and is licensed under the GPLv3 license. See COPYING.txt.
